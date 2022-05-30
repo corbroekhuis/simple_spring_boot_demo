@@ -8,8 +8,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerServiceImpl implements CustomerService{
 
-    @Autowired
+    //@Autowired
     private CustomerRepository customerRepository;
+
+    public CustomerServiceImpl() {
+    }
+
+    @Autowired
+    public CustomerServiceImpl(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     @Override
     public Iterable<Customer> findAll(){

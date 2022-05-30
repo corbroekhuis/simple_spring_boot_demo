@@ -2,17 +2,17 @@ package com.example.demo.mvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Controller
 public class CustomerMvcController {
 
-    @GetMapping("/home")
+    // http://localhost:9090/customer
+    @GetMapping("/customer")
     public String getHome() {
 
         System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
 
-        return "home";
+        return "customer";
     }
 }
 

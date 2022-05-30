@@ -14,9 +14,9 @@ public class Customer {
     private String address;
     private int age;
 
-    @Lob
-    @Column(columnDefinition="BLOB")
-    private Byte[] image = new Byte[200_000];
+//    @Lob
+//    @Column(columnDefinition="BLOB")
+//    private Byte[] image = new Byte[200_000];
 
     public Customer() {
     }
@@ -27,9 +27,9 @@ public class Customer {
         this.address = address;
         this.age = age;
 
-        for( int i = 0; i < image.length; i++){
-            image[i] = (byte)0;
-        }
+ //       for( int i = 0; i < image.length; i++){
+//            image[i] = (byte)0;
+//        }
 
     }
 
@@ -65,11 +65,11 @@ public class Customer {
         this.age = age;
     }
 
-    public Byte[] getImage() {
-        return image;
-    }
+ //   public Byte[] getImage() {
+  //      return image;
+ //   }
 
-    public void setImage(Byte[] image) {
-        this.image = image;
-    }
+//    public void setImage(Byte[] image) {
+   //     this.image = image;
+  //  }
 }

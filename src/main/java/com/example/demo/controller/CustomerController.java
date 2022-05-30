@@ -11,8 +11,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api")
 public class CustomerController {
 
-   // @Autowired
+//    @Autowired
     private CustomerService customerService;
+
+    public CustomerController(){
+
+    }
+
+    @Autowired
+    public CustomerController( CustomerService customerService){
+        this.customerService = customerService;
+    }
 
     // http://localhost:9090/api/customer
     @GetMapping(value = "/customer")
