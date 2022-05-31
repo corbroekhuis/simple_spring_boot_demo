@@ -11,12 +11,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api")
 public class CustomerController {
 
-//    @Autowired
     private CustomerService customerService;
 
-    public CustomerController(){
-
-    }
+    public CustomerController(){}
 
     @Autowired
     public CustomerController( CustomerService customerService){
@@ -27,17 +24,20 @@ public class CustomerController {
     @GetMapping(value = "/customer")
     public ResponseEntity<Iterable<Customer>> findAll(){
 
+        System.out.println("Inside method findAll");
+
         Iterable<Customer> customers = customerService.findAll();
         return ResponseEntity.ok( customers);
 
     }
 
-    // http://9090/api/customer
+    // http://localhost:9090/api/customer
     @PostMapping(value = "/customer")
     public ResponseEntity<Customer> createCustomer( @RequestBody Customer customer){
 
-        Customer customerCreated = customerService.createCustomer(customer);
+        System.out.println("Inside method createCustomer");
 
+        Customer customerCreated = customerService.createCustomer(customer);
         return ResponseEntity.ok( customerCreated);
 
     }
