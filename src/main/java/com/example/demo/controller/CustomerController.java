@@ -2,13 +2,13 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Customer;
 import com.example.demo.service.CustomerService;
-import com.example.demo.service.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api")
+@CrossOrigin(origins = {"http://localhost:5500", "http://127.0.0.1:5500"})
 public class CustomerController {
 
     private CustomerService customerService;
