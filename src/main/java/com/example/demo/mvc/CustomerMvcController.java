@@ -9,6 +9,9 @@ public class CustomerMvcController {
     // http://localhost:9090/customer
     @GetMapping("/customer")
     public String getCustomerPage() {
+
+        System.out.println("Inside getCustomerPage");
+
         return "customer";
     }
 }
