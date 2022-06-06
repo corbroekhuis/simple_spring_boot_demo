@@ -23,7 +23,6 @@ function getCustomers(){
         url: api,
         type: "get",
         dataType: "json",
-        contentType: "application/json",
         success: function(customers, textStatus, jqXHR){
             // process the data (json) and modify the DOM
             var html =
@@ -59,7 +58,8 @@ function getCustomers(){
 function createCustomer(){
 
     console.log('inside createCustomer' );
-    // Put customer data from page in Javascript object
+
+    // Put customer data from page in Javascript object --- SIMILAR TO JSON
     var customerData = {
             name: $("#name").val(),
             address: $("#address").val(),
@@ -76,19 +76,9 @@ function createCustomer(){
         type: "post",
         data: customerJson,    // json for request body
         dataType: "json",
-        contentType: "application/json",
         success: function(customer, textStatus, jqXHR){
-          console.log(customer);
-          console.log(
-          customer.name + ' ' +
-          customer.address + ' ' +
-          customer.age + ' yrs');
 
-          // process the data (json) and modify the DOM
-          console.log('post status: ' + jqXHR.status + ', data: '
-          + customer.name + ' ' +
-          + customer.address + ' ' +
-          + customer.age + ' yrs');
+          console.log(customer);
 
           // Clear fields in page
           $("#name").val('');
