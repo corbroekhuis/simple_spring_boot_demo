@@ -63,7 +63,7 @@ function createCustomer(){
     var customerData = {
             name: $("#name").val(),
             address: $("#address").val(),
-            age: $("#age").val(),
+            age: $("#age").val()
     }
 
     // Transform Javascript object to json
@@ -75,7 +75,8 @@ function createCustomer(){
         url: api,
         type: "post",
         data: customerJson,    // json for request body
-        dataType: "json",
+        contentType:"application/json; charset=utf-8",   // What we send to frontend
+        dataType: "json",  // get back from frontend
         success: function(customer, textStatus, jqXHR){
 
           console.log(customer);
