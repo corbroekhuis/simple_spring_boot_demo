@@ -23,6 +23,7 @@ public class CustomerServiceImpl implements CustomerService{
     public Iterable<Customer> findAll(){
         Iterable<Customer> customers = customerRepository.findAll();
 
+        customerRepository.findById();
         //
 
         return customers;

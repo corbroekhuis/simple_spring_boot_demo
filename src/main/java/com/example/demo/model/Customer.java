@@ -2,15 +2,13 @@ package com.example.demo.model;
 
 import javax.persistence.*;
 
-@Entity(name="Klant")
+@Entity
 public class Customer {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
-    @Column(name="Naam")
     private String name;
-    @Column(name="customer_addres")
     private String address;
     private int age;
 

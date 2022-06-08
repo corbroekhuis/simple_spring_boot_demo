@@ -14,5 +14,15 @@ public class CustomerMvcController {
 
         return "customer";
     }
+
+    // http://localhost:9090/reservation
+    @GetMapping("/reservation")
+    public String reservationPage( Httpr) {
+
+        System.out.println("Inside reservationPage");
+
+        return "reservation";
+    }
+
 }
 

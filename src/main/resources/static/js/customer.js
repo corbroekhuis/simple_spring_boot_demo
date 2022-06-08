@@ -1,4 +1,5 @@
 var api = "http://localhost:9090/api/customer" ;
+var customerTable;
 
 function init(){
 
@@ -9,42 +10,56 @@ function init(){
         createCustomer();
     });
 
-    // Get customers from backend and update DOM
-    getCustomers();
+    initCustomerTable();
+    // Get customers from backend and and update table
+    getCustomerData();
 
 }
 
-function getCustomers(){
+function initCustomerTable() {
 
-    console.log('inside getCustomers' );
+    console.log('inside initCustomerTable' );
+
+    // Create columns (with titles) for datatable: id, name, address, age
+    columns = [
+        { "title":  "Customer ID",
+            "data": "id" ,
+            "visible": false },
+        { "title":  "Name",
+            "data": "name" },
+        { "title":  "Address",
+            "data": "address" },
+        { "title": "Age",
+            "data": "age"},
+    ];
+
+    // Define new table with above columns
+    customerTable = $("#customerTable").DataTable( {
+        "order": [[ 0, "asc" ]],
+        "columns": columns
+    });
+
+}
+
+function getCustomerData(){
+
+    console.log('inside getCustomerData' );
     // http:/localhost:9090/api/customer
     // json list of customers
     $.ajax({
         url: api,
         type: "get",
         dataType: "json",
-        success: function(customers, textStatus, jqXHR){
-            // process the data (json) and modify the DOM
-            var html =
-            '<table class="table">' +
-            '<tr>' +
-            '<th>Name</th>' +
-            '<th>Address</th>' +
-            '<th>Age</th>' +
-            '</tr>';
-            $.each(customers, function(index, customer) {
-                html = html + '<tr>'+
-                '<td>'+ customer.name + '</td>' +
-                '<td>'+ customer.address + '</td>' +
-                '<td>'+ customer.age + '</td>' +
-                '</tr>'
-                console.log(customer.name + ' ' + customer.age + ' yrs');
-            });
+        // success: function(customers, textStatus, jqXHR){
+        success: function(customers){
 
-            html = html + '</table>';
+ //           console.log('Data: ' + customers );
 
-            $("#customers").html(html);
-
+            if (customers) {
+                customerTable.clear();
+                customerTable.rows.add(customers);
+                customerTable.columns.adjust().draw();
+            }
         },
 
         fail: function (error) {
@@ -77,7 +92,8 @@ function createCustomer(){
         data: customerJson,    // json for request body
         contentType:"application/json; charset=utf-8",   // What we send to frontend
         dataType: "json",  // get back from frontend
-        success: function(customer, textStatus, jqXHR){
+        // success: function(customer, textStatus, jqXHR){
+        success: function(customer){
 
           console.log(customer);
 
@@ -87,7 +103,7 @@ function createCustomer(){
           $("#age").val('');
 
           // Refresh table data
-          getCustomers();
+          getCustomerData();
 
         },
 
