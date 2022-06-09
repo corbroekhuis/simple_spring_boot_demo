@@ -1,0 +1,26 @@
+[ {
+  "className" : "Reservation",
+  "classNames" : "Reservations",
+  "packageName" : "com.example.demo",
+  "endpointUri" : "/api",
+  "methodUri" : "",
+  "members" : [ {
+    "name" : "id",
+    "type" : "long"
+  }, {
+    "name" : "customer",
+    "type" : "Customer"
+  }, {
+    "name" : "date",
+    "type" : "LocalDateTime"
+  }, {
+    "name" : "tableId",
+    "type" : "int"
+  }, {
+    "name" : "roomId",
+    "type" : "int"
+  }, {
+    "name" : "seaView",
+    "type" : "boolean"
+  } ]
+} ]
