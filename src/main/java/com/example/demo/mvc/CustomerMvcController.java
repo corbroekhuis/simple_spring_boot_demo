@@ -17,7 +17,7 @@ public class CustomerMvcController {
 
     // http://localhost:9090/reservation
     @GetMapping("/reservation")
-    public String reservationPage( Httpr) {
+    public String reservationPage() {
 
         System.out.println("Inside reservationPage");
 

@@ -26,7 +26,7 @@ public class DemoApplication implements CommandLineRunner {
 
 		List<Customer> customers = new ArrayList<>();
 
-		for( int n = 0; n < 200; n++){
+		for( int n = 0; n < 10; n++){
 			customers.add( new Customer(0, Util.getFakeFullName(), Util.getFakeAddress(), Util.getFakeAge()));
 		}
 

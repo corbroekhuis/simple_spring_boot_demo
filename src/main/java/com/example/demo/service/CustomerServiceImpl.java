@@ -5,6 +5,8 @@ import com.example.demo.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CustomerServiceImpl implements CustomerService{
 
@@ -22,11 +24,12 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public Iterable<Customer> findAll(){
         Iterable<Customer> customers = customerRepository.findAll();
-
-        customerRepository.findById();
-        //
-
         return customers;
+    }
+
+    @Override
+    public Optional<Customer> findByName(String name) {
+        return customerRepository.findByName( name);
     }
 
     @Override
@@ -35,8 +38,9 @@ public class CustomerServiceImpl implements CustomerService{
         return customerCreated;
     }
 
-
-
-
+    @Override
+    public void deleteCustomer(long customerId) {
+        customerRepository.deleteById( customerId);
+    }
 
 }

@@ -5,14 +5,63 @@ function init(){
 
     console.log('inside init' );
 
-    // Add click event to button
-    $("#create-customer").click(function (){
+    $("#newCustomerButton").click( function () {
+        console.log("Inside click of newCustomerButton");
+        $('#customerModal').modal('show');
+    });
+
+    $("#editCustomerButton").click( function () {
+        console.log("Inside click of editCustomerButton");
+        // Get the data from selected row and fill fields in modal
+
+//        $("#name").val('XXXXX');
+//        $("#address").val('ZZZZZZZZ');
+//        $("#age").val(23);
+
+        if (customerTable.row($('.selected')).data() == undefined) {
+            alert("Select customer first");
+        }else{
+            var customer = customerTable.row($('.selected')).data();
+            alert(customer.id);
+            $("#name").val(customer.name);
+            $("#address").val(customer.address);
+            $("#age").val(customer.age);
+
+            $('#customerModal').modal('show');
+        }
+
+    });
+
+    $("#deleteCustomerButton").click( function () {
+        console.log("Inside click of deleteCustomerButton");
+
+        if (customerTable.row($('.selected')).data() == undefined) {
+            alert("Select customer first");
+        }else{
+            $('#customerDeleteModal').modal('show');
+        }
+
+    });
+
+    // Button in modal
+    $("#deleteCustomerConfirmButton").click( function () {
+        console.log("Inside click of deleteCustomerButton");
+        deleteCustomer();
+        $('#customerDeleteModal').modal('hide');
+    });
+
+    // Add submit event to form for new and edit
+    $("#customerForm").on('submit', function() {
+        console.log("Submitting");
         createCustomer();
+        $('#customerModal').modal('hide');
     });
 
     initCustomerTable();
     // Get customers from backend and and update table
     getCustomerData();
+
+
 
 }
 
@@ -37,6 +86,20 @@ function initCustomerTable() {
     customerTable = $("#customerTable").DataTable( {
         "order": [[ 0, "asc" ]],
         "columns": columns
+    });
+
+
+    $("#customerTable tbody").on( 'click', 'tr', function () {
+        console.log("Clicking on row");
+        if ( $(this).hasClass('selected') ) {
+          $(this).removeClass('selected');
+          // emptyRoomModals();
+        }
+        else {
+            customerTable.$('tr.selected').removeClass('selected');
+          // emptyRoomModals();
+            $(this).addClass('selected');
+        }
     });
 
 }
@@ -112,5 +175,41 @@ function createCustomer(){
         }
 
     });
+
+}
+
+function deleteCustomer(){
+
+    if (customerTable.row($('.selected')).data() == undefined) {
+        alert("Select customer first");
+    }else{
+        var customer = customerTable.row($('.selected')).data();
+
+        console.log(api + '/' + customer.id);
+
+            $.ajax({
+                url: api + '/' + customer.id,
+                contentType: "application/json",
+                dataType: "text",  // get back from frontend
+                // success: function(customer, textStatus, jqXHR){
+                success: function(message){
+
+                  console.log(message);
+
+                  // Refresh table data
+                  getCustomerData();
+
+                },
+
+                fail: function (error) {
+                  console.log('Error: ' + error);
+                }
+
+            });
+
+
+
+    }
+
 
 }

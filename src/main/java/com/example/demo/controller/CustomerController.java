@@ -34,6 +34,17 @@ public class CustomerController {
 
     }
 
+    // http://localhost:9090/api/customer
+    @GetMapping(value = "/customer/{name}", produces= MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Customer> getCustomersByName( @PathVariable String name){
+
+        System.out.println("Inside getAllCustomers");
+
+        Customer customer = customerService.findByName( name).orElse(null);
+        return ResponseEntity.ok( customer);
+
+    }
+
     // http://9090/api/customer
     @PostMapping(value = "/customer", consumes= MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Customer> createCustomer( @RequestBody Customer customer){
@@ -43,6 +54,18 @@ public class CustomerController {
         Customer customerCreated = customerService.createCustomer(customer);
 
         return ResponseEntity.ok( customerCreated);
+
+    }
+
+    // http://9090/api/customer
+    @DeleteMapping(value = "/customer/{customerId}", produces= MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> deleteCustomerById( @PathVariable Long customerId){
+
+        System.out.println("Inside deleteCustomerById");
+
+        customerService.deleteCustomer(customerId);
+
+        return ResponseEntity.ok( "Customer with id: " + customerId + " is deleted");
 
     }
 
