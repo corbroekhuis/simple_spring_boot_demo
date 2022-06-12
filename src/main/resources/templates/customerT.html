@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="/js/customer.js"></script>
-    
+
     <script>
         $( document ).ready(function() {
             console.log( "initializing" );
@@ -25,6 +25,9 @@
 
 </head>
 <body>
+
+<div th:insert="/fragments/header :: header"></div>
+<div th:insert="/fragments/menu :: menu"></div>
 
 <p/>
 <div class="container">
@@ -67,14 +70,15 @@
 
                 </form>
             </div>
+
         </div>
 
     </div>
 </div>
 
 <div class=“row”>
-    <div class=“col-md-12”>
-<!--        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#customerModal">New Customer</button>   -->
+    <div class="w-50 mx-auto">
+        <!--        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#customerModal">New Customer</button>   -->
         <button type="button" class="btn btn-primary" id="newCustomerButton">New Customer</button>
         <button type="button" class="btn btn-primary" id="editCustomerButton">Edit Customer</button>
         <button type="button" class="btn btn-primary" id="deleteCustomerButton">Delete Customer</button>
@@ -104,6 +108,8 @@
 
     </div>
 </div>
+
+<div th:insert="/fragments/footer :: footer"></div>
 
 </body>
 </html>

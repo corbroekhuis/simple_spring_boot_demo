@@ -12,7 +12,7 @@ public class CustomerMvcController {
 
         System.out.println("Inside customerPage");
 
-        return "customer";
+        return "customerT";
     }
 
     // http://localhost:9090/reservation
