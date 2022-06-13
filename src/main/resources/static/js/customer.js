@@ -22,7 +22,7 @@ function init(){
             alert("Select customer first");
         }else{
             var customer = customerTable.row($('.selected')).data();
-            alert(customer.id);
+            $("#id").val(customer.id);
             $("#name").val(customer.name);
             $("#address").val(customer.address);
             $("#age").val(customer.age);
@@ -88,7 +88,6 @@ function initCustomerTable() {
         "columns": columns
     });
 
-
     $("#customerTable tbody").on( 'click', 'tr', function () {
         console.log("Clicking on row");
         if ( $(this).hasClass('selected') ) {
@@ -139,6 +138,7 @@ function createCustomer(){
 
     // Put customer data from page in Javascript object --- SIMILAR TO JSON
     var customerData = {
+            id: $("#id").val(),
             name: $("#name").val(),
             address: $("#address").val(),
             age: $("#age").val()
@@ -147,7 +147,7 @@ function createCustomer(){
     // Transform Javascript object to json
     var customerJson = JSON.stringify(customerData);
 
-    console.log(customerJson);
+    alert(customerJson);
 
     $.ajax({
         url: api,
@@ -161,6 +161,7 @@ function createCustomer(){
           console.log(customer);
 
           // Clear fields in page
+          $("#id").val('');
           $("#name").val('');
           $("#address").val('');
           $("#age").val('');
@@ -184,11 +185,12 @@ function deleteCustomer(){
         alert("Select customer first");
     }else{
         var customer = customerTable.row($('.selected')).data();
-
+// http:9090/api/customer/2
         console.log(api + '/' + customer.id);
 
             $.ajax({
                 url: api + '/' + customer.id,
+                type: "delete",
                 contentType: "application/json",
                 dataType: "text",  // get back from frontend
                 // success: function(customer, textStatus, jqXHR){

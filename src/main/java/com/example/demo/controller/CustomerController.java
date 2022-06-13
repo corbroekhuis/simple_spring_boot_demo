@@ -57,7 +57,7 @@ public class CustomerController {
 
     }
 
-    // http://9090/api/customer
+    // http://9090/api/customer/3
     @DeleteMapping(value = "/customer/{customerId}", produces= MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> deleteCustomerById( @PathVariable Long customerId){
 
