@@ -102,6 +102,7 @@ function createReservation(){
 
     // Put reservation data from page in Javascript object --- SIMILAR TO JSON
     var reservationData = {
+            id: $("#id").val(),
             date: $("#date").val(),
             tableId: $("#tableid").val(),
             roomId: $("#roomid").val(),
@@ -125,6 +126,7 @@ function createReservation(){
           console.log(reservation);
 
           // Clear fields in page
+          $("#id").val('');
           $("#date").val('');
           $("#tableid").val('');
           $("#roomid").val('');

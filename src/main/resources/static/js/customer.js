@@ -5,6 +5,15 @@ function init(){
 
     console.log('inside init' );
 
+    $("#radio_1").attr('checked', true);
+
+    $(function () {
+        $("#gfg").datepicker(
+            { firstDay: 1 }
+        );
+    });
+
+
     $("#newCustomerButton").click( function () {
         console.log("Inside click of newCustomerButton");
         $('#customerModal').modal('show');
@@ -23,6 +32,7 @@ function init(){
         }else{
             var customer = customerTable.row($('.selected')).data();
             alert(customer.id);
+            $("#id").val(customer.id);
             $("#name").val(customer.name);
             $("#address").val(customer.address);
             $("#age").val(customer.age);
@@ -139,6 +149,7 @@ function createCustomer(){
 
     // Put customer data from page in Javascript object --- SIMILAR TO JSON
     var customerData = {
+            id: $("#id").val(),
             name: $("#name").val(),
             address: $("#address").val(),
             age: $("#age").val()
@@ -161,6 +172,7 @@ function createCustomer(){
           console.log(customer);
 
           // Clear fields in page
+          $("#id").val('');
           $("#name").val('');
           $("#address").val('');
           $("#age").val('');

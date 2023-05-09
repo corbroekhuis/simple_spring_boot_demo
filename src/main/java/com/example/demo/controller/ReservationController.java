@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.model.Reservation;
 
 @RestController
-@RequestMapping("//api")
+@RequestMapping("api")
 public class ReservationController {
 
     protected static final Logger logger = LogManager.getLogger();
