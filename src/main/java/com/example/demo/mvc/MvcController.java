@@ -6,13 +6,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MvcController {
 
-    // http://localhost:9090/customer
+    // http://localhost:9090
     @GetMapping("/")
     public String homePage() {
 
         System.out.println("Inside homePage");
 
         return "home";
+    }
+
+    // http://localhost:9090
+    @GetMapping("/login")
+    public String loginPage() {
+
+        System.out.println("Inside homePage");
+
+        return "login";
     }
 
     // http://localhost:9090/customer

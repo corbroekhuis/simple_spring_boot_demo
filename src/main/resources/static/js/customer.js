@@ -94,7 +94,7 @@ function initCustomerTable() {
 
     // Define new table with above columns
     customerTable = $("#customerTable").DataTable( {
-        "order": [[ 0, "asc" ]],
+        "order": [[ 1, "asc" ]],
         "columns": columns
     });
 
@@ -201,6 +201,7 @@ function deleteCustomer(){
 
             $.ajax({
                 url: api + '/' + customer.id,
+                type: "delete",
                 contentType: "application/json",
                 dataType: "text",  // get back from frontend
                 // success: function(customer, textStatus, jqXHR){
